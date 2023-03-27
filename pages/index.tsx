@@ -1,9 +1,12 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import { Inter } from '@next/font/google'
-import styles from '@/styles/Home.module.css'
-
+import { imageOptimizer } from 'next/dist/server/image-optimizer'
+import { isModuleBlock } from 'typescript'
 const inter = Inter({ subsets: ['latin'] })
+import Navbar from '../Components/Navbar'
+import Styles from '../styles/Home.module.css'
+import Image from 'next/image'
+import Link from 'next/link'
 
 export default function Home() {
   return (
@@ -14,110 +17,226 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        <div className={styles.description}>
-          <p>
-            Get started by editing&nbsp;
-            <code className={styles.code}>pages/index.tsx</code>
-          </p>
-          <div>
-            <a
-              href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              By{' '}
+
+      <header className={Styles.header}>
+        <Navbar />
+
+      </header>
+
+      <main className={Styles.container}>
+
+        {/* home */}
+        <section className={Styles.home} id="home">
+          <div className={Styles['home__container']}>
+            <div className={Styles["home__data"]}>
+              <h1 className={Styles["home-title"]}>Tasty food</h1>
+              <h2 className={Styles.subtitle}>Try the best food of <br /> the week. </h2>
+
+              <Link href="#" className={Styles.button}>View Menu</Link>
+            </div>
+            <div className={Styles['home_img']}>
               <Image
-                src="/vercel.svg"
-                alt="Vercel Logo"
-                className={styles.vercelLogo}
-                width={100}
-                height={24}
-                priority
-              />
-            </a>
+                src='/images/home.png'
+                width="420"
+                height="420"
+                alt="logo"
+                className={Styles.homeImage}
+              ></Image>
+            </div>
           </div>
-        </div>
+        </section>
 
-        <div className={styles.center}>
-          <Image
-            className={styles.logo}
-            src="/next.svg"
-            alt="Next.js Logo"
-            width={180}
-            height={37}
-            priority
-          />
-          <div className={styles.thirteen}>
-            <Image
-              src="/thirteen.svg"
-              alt="13"
-              width={40}
-              height={31}
-              priority
-            />
+        {/* about */}
+        <section className={Styles.about} id="about">
+          <div className={Styles["about__container"]}>
+            <div className={Styles["about__data"]}>
+              <span className={Styles['section-subtitle']}>About us</span>
+              <h2 className={Styles.title}>We cook the best <br /> tasty food</h2>
+              <p className={Styles["about-description"]}>We cook the best food in the entire city, <br /> with excellent customer service, the best meals and at the best price, visit us.</p>
+              <Link href="#" className={Styles.button}>Explore history</Link>
+            </div>
+
+            <div className={Styles['about_img']}>
+              <Image
+                src='/images/about.jpg'
+                width="420"
+                height="420"
+                alt="logo"
+                className={Styles.aboutImage}
+              ></Image>
+            </div>
           </div>
-        </div>
+        </section>
 
-        <div className={styles.grid}>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Docs <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Find in-depth information about Next.js features and&nbsp;API.
-            </p>
-          </a>
+        {/* services */}
+        <section className={Styles.services} id="services">
+          <span className={Styles['section-subtitle']}>Offering</span>
+          <h2 >Our amazing services</h2>
 
-          <a
-            href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Learn <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Learn about Next.js in an interactive course with&nbsp;quizzes!
-            </p>
-          </a>
+          <div className={Styles["services__container"]}>
 
-          <a
-            href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Templates <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Discover and deploy boilerplate example Next.js&nbsp;projects.
-            </p>
-          </a>
+            <div className={Styles["service-card"]}>
+              <Image
+                src='/images/about.jpg'
+                width="120"
+                height="120"
+                alt="logo"
+                className={Styles["service-image"]}
+              ></Image>
+              <h2 className={Styles["service-title"]}>
+                Excellent food
+              </h2>
+              <p className={Styles["service-desciption"]}>
+                We offer our clients excellent quality services for many years, with the best and delicious food in the city.
+              </p>
+            </div>
 
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Deploy <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Instantly deploy your Next.js site to a shareable URL
-              with&nbsp;Vercel.
-            </p>
-          </a>
-        </div>
+            <div className={Styles["service-card"]}>
+              <Image
+                src='/images/about.jpg'
+                width="120"
+                height="120"
+                alt="logo"
+                className={Styles["service-image"]}
+              ></Image>
+              <h2 className={Styles["service-title"]}>
+                Fast food
+              </h2>
+              <p className={Styles["service-desciption"]}>
+                We offer our clients excellent quality services for many years, with the best and delicious food in the city.
+              </p>
+            </div>
+
+            <div className={Styles["service-card"]}>
+              <Image
+                src='/images/about.jpg'
+                width="120"
+                height="120"
+                alt="logo"
+                className={Styles["service-image"]}
+              ></Image>
+              <h2 className={Styles["service-title"]}>
+                Delivery
+              </h2>
+              <p className={Styles["service-desciption"]}>
+                We offer our clients excellent quality services for many years, with the best and delicious food in the city.
+              </p>
+            </div>
+          </div>
+        </section>
+
+
+
+        {/* menu*/}
+
+
+        <section className={Styles.menu} id="menu">
+          <span className={Styles['section-subtitle']}>Special</span>
+          <h2 className={Styles.title}>Menu of the week</h2>
+
+          <div className={Styles["menu__container"]}>
+
+            <div className={Styles["menu-card"]}>
+              <Image
+                src='/images/home.png'
+                width="120"
+                height="120"
+                alt="logo"
+                className={Styles["menu-image"]}
+              ></Image>
+              <h2 className={Styles["menu-title"]}>
+                Barbecue salad
+              </h2>
+              <p className={Styles["menu-subtitle"]}>
+                Delicious dish
+              </p>
+              <p className={Styles.price}>
+                $55.00
+              </p>
+            </div>
+
+            <div className={Styles["menu-card"]}>
+              <Image
+                src='/images/home.png'
+                width="120"
+                height="120"
+                alt="logo"
+                className={Styles["menu-image"]}
+              ></Image>
+              <h2 className={Styles["menu-title"]}>
+                Barbecue salad
+              </h2>
+              <p className={Styles["menu-subtitle"]}>
+                Delicious dish
+              </p>
+              <p className={Styles.price}>
+                $55.00
+              </p>
+            </div>
+
+            <div className={Styles["menu-card"]}>
+              <Image
+                src='/images/home.png'
+                width="120"
+                height="120"
+                alt="logo"
+                className={Styles["menu-image"]}
+              ></Image>
+              <h2 className={Styles["menu-title"]}>
+                Barbecue salad
+              </h2>
+              <p className={Styles["menu-subtitle"]}>
+                Delicious dish
+              </p>
+              <p className={Styles.price}>
+                $55.00
+              </p>
+            </div>
+          </div>
+
+        </section>
+
       </main>
+
+      {/* footer */}
+
+      <footer className={Styles.footer}>
+        <div className={Styles["footer__container"]}>
+
+          <div className={Styles["footer__content"]}>
+            <h3 className={Styles["footer__title"]}>Services</h3>
+            <ul>
+              <li>Delivery</li>
+              <li>Pricing</li>
+              <li>Fast food</li>
+              <li>Reserve your spot</li>
+            </ul>
+          </div>
+
+          <div className={Styles["footer__content"]}>
+            <h3 className={Styles["footer__title"]}>Information</h3>
+            <ul>
+              <li>Event</li>
+              <li>Contact us</li>
+              <li>Privacy policy</li>
+              <li>Terms of services</li>
+            </ul>
+          </div>
+
+          <div className={Styles["footer__content"]}>
+            <h3 className={Styles["footer__title"]}>Adress</h3>
+            <ul>
+              <li>Lima - Peru</li>
+              <li>Jr Union #999</li>
+              <li>999 - 888 - 777</li>
+              <li>tastyfood@email.com</li>
+            </ul>
+          </div>
+        </div>
+        <p className={Styles["footer__copy"]}>&#169; 2023 MD KALAM. All right reserved</p>
+
+      </footer>
     </>
   )
 }
+
