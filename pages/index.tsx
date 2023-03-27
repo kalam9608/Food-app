@@ -226,10 +226,10 @@ export default function Home() {
           <div className={Styles["footer__content"]}>
             <h3 className={Styles["footer__title"]}>Adress</h3>
             <ul>
-              <li>Lima - Peru</li>
-              <li>Jr Union #999</li>
-              <li>999 - 888 - 777</li>
-              <li>tastyfood@email.com</li>
+              <li>Dis - Ranchi</li>
+              <li>union sector 5</li>
+              <li>777- 888 - 997</li>
+              <li>arsh9608@gmail.com</li>
             </ul>
           </div>
         </div>
